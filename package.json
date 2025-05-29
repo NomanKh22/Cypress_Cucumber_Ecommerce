@@ -1,0 +1,34 @@
+{
+  "name": "java_selenium_clone",
+  "version": "1.0.0",
+  "description": "Automate Ecommerce app with cucumber framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:run": "cypress run",
+    "posttest": "node ./generate-cucumber-html-report.js"
+  },
+  "keywords": [
+    "Automationtesting",
+    "cucumber"
+  ],
+  "author": "Noman khan",
+  "license": "ISC",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.5",
+    "cypress": "^14.4.0",
+    "esbuild": "^0.25.4"
+  },
+  "cypress-cucumber-preprocessor": {
+    "cucumber_json_report": true,
+    "json": {
+      "enabled": true,
+      "formatter": "./jsonFormmatter/cucumber-json-formatter",
+      "output": "json-logs/report.json"
+    }
+  },
+  "dependencies": {
+    "multiple-cucumber-html-reporter": "^3.9.2"
+  }
+}
