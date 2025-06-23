@@ -1,12 +1,10 @@
-name: CI
+name: Run Cypress Cucumber Tests
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   test:
@@ -14,17 +12,21 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '18'
 
       - name: Install dependencies
-        run: npm install
-        working-directory: ./src
+        run: npm ci
 
-      - name: Run tests
-        run: npm test
-        working-directory: ./src
+      - name: Build the app (if needed)
+        run: npm run build
+
+      - name: Start the app in background
+        run: npm start &
+
+      - name: Run Cypress tests
+        run: npx cypress run
