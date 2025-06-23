@@ -23,9 +23,9 @@ jobs:
         run: npm ci
 
       - name: Run Cypress tests
-        run: |
-          npx cypress info
-          npx cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          command: npx cypress info && npx cypress run
         
 
         
